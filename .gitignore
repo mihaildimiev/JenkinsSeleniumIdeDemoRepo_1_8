@@ -1,0 +1,4 @@
+*.vsdix
+/.vs
+/bin
+/obj
