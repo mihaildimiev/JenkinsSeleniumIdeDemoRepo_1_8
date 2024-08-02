@@ -8,6 +8,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mihaildimiev/JenkinsSeleniumIdeDemoRepo_1_8'
             }
         }
+
         stage("Set up .Net Core"){
             // install dot net
             steps {
@@ -19,21 +20,24 @@ pipeline {
                 '''
             }
         }
+
         stage("Restoring nuget packages") {
             steps {
                 bat 'dotnet restore SeleniumIde.sln'
             }
         }
+
         stage("Build"){
             // build
             steps {
                 bat 'dotnet build SeleniumIde.sln --configuration Release'
             }
         }
+
         stage("Run Tests"){
             // run tests
             steps {
-                bat 'dotnet test SeleniumIde.sin --logger "trx;LogFileName=TestResults.trx"'
+                bat 'dotnet test SeleniumIde.sln --logger "trx;LogFileName=TestResults.trx"'
             }
         }
     }
